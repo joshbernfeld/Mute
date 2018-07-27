@@ -47,17 +47,17 @@ public class Mute: NSObject {
         }
     }
 
-    /// How frequently to check (seconds), minimum = 0.5
+    /// How frequently to check (seconds), minimum = 0.2
     public var checkInterval = 1.0 {
         didSet {
-            if self.checkInterval < 0.5 {
-                print("MUTE: checkInterval cannot be less than 0.5s, setting to 0.5")
-                self.checkInterval = 0.5
+            if self.checkInterval < 0.2 {
+                print("MUTE: checkInterval cannot be less than 0.2s, setting to 0.2")
+                self.checkInterval = 0.2
             }
         }
     }
 
-    /// Silent sound (0.5 sec)
+    /// Silent sound (0.2 sec)
     private var soundId: SystemSoundID = 0
 
     /// Time difference between start and finish of mute sound
@@ -174,7 +174,7 @@ public class Mute: NSObject {
         self.isPlaying = false
 
         let elapsed = Date.timeIntervalSinceReferenceDate - self.interval
-        let isMute = elapsed < 0.1
+        let isMute = elapsed < 0.2
 
         if self.isMute != isMute || self.alwaysNotify {
             self.isMute = isMute
